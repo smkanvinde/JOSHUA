@@ -35,8 +35,8 @@ extern uint32_t Lx, Ly, Rx, Ry,
        Up, Down, Right, Left,
        L1, L2, R1, R2;
 extern uint32_t BackButton, SelectButton, UpButton, DownButton;
-float leftValue;
-float rightValue;
+uint32_t leftVal;
+uint32_t rightVal;
 tADC* leftPot;
 tADC* rightPot;
 tMotor* left;
@@ -47,36 +47,76 @@ float rightMotor;
 ///*extern*/ float LeftMotor, RightMotor;
 
 
-void User_DriveMotors(float leftValue, float rightValue){
-    if ((leftValue > 0.4) && (leftValue < 0.6)){
-      SetMotor(left, 0);
-    }
-    else if (leftValue >= 0.6){
-      leftMotor = (leftValue - 0.6) / 0.4;
+void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
+  // if (leftValue == 127){
+       // SetMotor(left, leftMotor/2);
+       // Wait(0.05);
+  //      SetMotor(left, 0);
+  //  }
+    if (leftValue > 127){
+      leftMotor = (float)(leftValue - 127) / 128;
       SetMotor(left, leftMotor);
     }
-    else if (leftValue <= 0.4){
-      leftMotor = (0.4 - leftValue) / 0.4 * -1;
+    else if (leftValue < 127){
+      leftMotor = (float)(127 - leftValue) / 127 * -1;
       SetMotor(left, leftMotor);
     }
-    else {
-      SetMotor(left, 0);
+    else if (leftValue == 127){
+        while (leftMotor >  0){
+            leftMotor = leftMotor - 0.001;
+            SetMotor(left, leftMotor);
+           // Wait(0.001);
+        }
+        while (leftMotor < 0){
+            leftMotor = leftMotor + 0.001;
+            SetMotor(left, leftMotor);
+           // Wait(0.001);
+        }
+        
     }
+  // else if (leftValue == 127 && rightValue == 127){
+  //     SetMotor(left, 0);
+  //     Wait(0.1);
+  //     SetMotor(right,0);
+  // }
+   // else {
+   //   SetMotor(left, 0);
+   // }
     
-    if ((rightValue > 0.4) && (rightValue < 0.6)){
-      SetMotor(right, 0);
-    }
-    else if (rightValue >= 0.6){
-      rightMotor = (rightValue - 0.6) / 0.4;
+   // if (rightValue == 127){
+     // SetMotor(right, rightMotor/2);
+     // Wait(0.05);
+   //   SetMotor(right, 0);
+   // }
+    if (rightValue >= 127){
+      rightMotor = (float)(rightValue - 127) / 128;
       SetMotor(right, rightMotor);
     }
-    else if (rightValue <= 0.4){
-      rightMotor = (0.4 - rightValue) / 0.4 * -1;
+    else if (rightValue < 127){
+      rightMotor = (float)(127 - rightValue) / 128 * -1;
       SetMotor(right, rightMotor);
     }
-    else {
-      SetMotor(right, 0);
+    else if (rightValue == 127){
+        while (rightMotor > 0){
+           rightMotor = rightMotor - 0.001;
+            SetMotor(right, rightMotor);
+           // Wait(0.001);
+        }
+        while (rightMotor < 0){
+            rightMotor = rightMotor + 0.001;
+            SetMotor(right, rightMotor);
+           // Wait(0.001);
+        }
     }
+    // else if (leftValue == 127 && rightValue == 127){
+    //   SetMotor(left, 0);
+    //   Wait(0.1);
+    //   SetMotor(right,0);
+    // }
+
+   // else {
+    //  SetMotor(right, 0);
+   // }
 }
 
 // *****User_Begin*********
@@ -101,6 +141,9 @@ void User_Begin(void){
 	while(1){
     //TestSampling_Check();
     PSX_Poll();
+   // if (Up == 255 && Left == 255 && Down && 255 && Right == 255){
+   //     PSX_Clear();
+   // }
 		if(Down > 0){
 			Down = 0;											// acknowdledge down button
 			if(mode == FREESTYLE){
@@ -165,7 +208,8 @@ void User_Begin(void){
 	//	SelectButton = 0;
 	//	BackButton = 0;
         PSX_Clear();                                                // clear all buttons
-	}
+    	}
+   
 }
 
 
@@ -187,7 +231,7 @@ void User_FreeStyle(void){
 	ST7735_SetCursor(0, 7);
 	ST7735_OutString("Direction: ");																	// lay out for user info
 	
-	while(BackButton == 0){
+	while(Circle == 0){
     
 		uint32_t leftP100 = 0;
 		uint32_t rightP100 = 0;
@@ -214,10 +258,10 @@ void User_FreeStyle(void){
 		// code to control motors from ADC
    // leftValue = ADCRead(leftPot);
    // rightValue = ADCRead(rightPot);
-      leftValue = Ly;
-      rightValue =  Ry;
+      leftVal = Ly;
+      rightVal =  Ry;
 
-    User_DriveMotors(leftValue, rightValue);
+    User_DriveMotors(leftVal, rightVal);
 	}
     SetMotor(left, 0);
     SetMotor(right, 0);
