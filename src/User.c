@@ -230,15 +230,19 @@ void User_FreeStyle(void){
 	ST7735_OutString("Right:   % of max");														
 	ST7735_SetCursor(0, 7);
 	ST7735_OutString("Direction: ");																	// lay out for user info
-	
-	while(Circle == 0){
     
 		uint32_t leftP100 = 0;
 		uint32_t rightP100 = 0;
 		uint32_t prevLeftP100 = 1;
-		uint32_t prevRightP100 = 1;																			// variables for displaying speed percentages
+		uint32_t prevRightP100 = 1;	
+	while(Circle == 0){
+    
+	    // leftP100 = 0;
+		// rightP100 = 0;
+		// prevLeftP100 = 1;
+		// prevRightP100 = 1;																			// variables for displaying speed percentages
    // TestSampling_Check();
-      PSX_Poll();
+        PSX_Poll();
 		
 		leftP100 = (uint32_t) fabs(leftMotor) * 100.0;
 		rightP100 = (uint32_t) fabs(rightMotor) * 100.0;								// calculate percentage of max
@@ -261,11 +265,12 @@ void User_FreeStyle(void){
       leftVal = Ly;
       rightVal =  Ry;
 
-    User_DriveMotors(leftVal, rightVal);
+      User_DriveMotors(leftVal, rightVal);
 	}
     SetMotor(left, 0);
     SetMotor(right, 0);
     PSX_Clear();
+
 //		UpButton = 0;
 //		DownButton = 0;
 //		SelectButton = 0;
