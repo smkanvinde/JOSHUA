@@ -58,7 +58,7 @@ uint32_t data[d_buf_size] = {0x00,};
 void PSX_Initialize(void){
 //        uint32_t data[d_buf_size] = {0x00,};
        // tUART * uart4 = InitializeUARTModule(4, 115200);
-        spi = InitializeSPI(PIN_A2, PIN_A5, PIN_A4, 250000, 8, true, true);
+        spi = InitializeSPI(PIN_D0, PIN_D3, PIN_D2, 250000, 8, true, true);
         //int i = 0,j;
         reverse_array(&poll[0],
                      arraySizeof(poll));
