@@ -30,7 +30,7 @@
 #define SPEEDX     7
 #define DIRECTIONX 11
 
-extern uint8_t Lx, Ly, Rx, Ry,
+extern uint32_t Lx, Ly, Rx, Ry,
        X, Square, Triangle, Circle,
        Up, Down, Right, Left,
        L1, L2, R1, R2;

@@ -9,7 +9,7 @@
 
 static int ledState = 0;
 static tSPI * spi;
-uint8_t Lx, Ly, Rx, Ry, X, Square, Triangle, Circle,
+uint32_t Lx, Ly, Rx, Ry, X, Square, Triangle, Circle,
          Up, Down, Left, Right, L1, L2, R1, R2;
 
 void ToggleLED (void) {
