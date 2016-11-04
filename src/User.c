@@ -244,8 +244,8 @@ void User_FreeStyle(void){
    // TestSampling_Check();
         PSX_Poll();
 		
-		leftP100 = (uint32_t) fabs(leftMotor) * 100.0;
-		rightP100 = (uint32_t) fabs(rightMotor) * 100.0;								// calculate percentage of max
+	//	leftP100 = (uint32_t) fabs(leftMotor) * 100.0;
+	//	rightP100 = (uint32_t) fabs(rightMotor) * 100.0;								// calculate percentage of max
 		
 		if(leftP100 != prevLeftP100){																		// update left percentage if it changed
 			ST7735_SetCursor(SPEEDX, 3);
@@ -257,7 +257,7 @@ void User_FreeStyle(void){
 		}
 		
 		prevLeftP100 = leftP100;
-		prevRightP100 = rightP100;																			// update the previous values
+		prevRightP100 = rightP100;							// update the previous values
 		
 		// code to control motors from ADC
    // leftValue = ADCRead(leftPot);
