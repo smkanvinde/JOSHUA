@@ -56,14 +56,15 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
       SetMotor(left, leftMotor);
     }
     else if (leftValue == 127){
-        while (leftMotor >  0){
+       /* while (leftMotor >  0){
             leftMotor = leftMotor - 0.001;
             SetMotor(left, leftMotor);
         }
         while (leftMotor < 0){
             leftMotor = leftMotor + 0.001;
             SetMotor(left, leftMotor);
-        }
+        }*/
+        SetMotor(left, 0);
         
     }
    if (rightValue >= 127){
@@ -75,14 +76,15 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
       SetMotor(right, rightMotor);
     }
     else if (rightValue == 127){
-        while (rightMotor > 0){
+       /* while (rightMotor > 0){
            rightMotor = rightMotor - 0.001;
             SetMotor(right, rightMotor);
         }
         while (rightMotor < 0){
             rightMotor = rightMotor + 0.001;
             SetMotor(right, rightMotor);
-        }
+        }*/
+        SetMotor(right, 0);
     }
 }
 
