@@ -175,7 +175,7 @@ void User_FreeStyle(void){
     ST7735_OutString("to drive the motors.");
     ST7735_SetCursor(0,6);
     ST7735_OutString("Press Circle to");
-	ST7735_SetCursor(0,5);
+	ST7735_SetCursor(0,7);
     ST7735_OutString("return to main menu.");
 /*	ST7735_SetCursor(0, 3);
 	ST7735_OutString("Left:    % of max");
