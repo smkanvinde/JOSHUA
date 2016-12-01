@@ -156,6 +156,15 @@ void User_Begin(void){
 			}
 			else if(mode == JOSHSTYLE){
 				// User_JoshStyle();							// go to corresponsing style if a selection is made
+              /*  SetMotor(left, -1);
+                SetMotor(right, 1);
+                Wait(5);
+                SetMotor(left, 1);
+                SetMotor(right, -1);
+                Wait(5);
+                SetMotor(left, 0);
+                SetMotor(right, 0);
+                mode = FREESTYLE;*/
 			}
 			
 			ST7735_FillScreen(0);              			
