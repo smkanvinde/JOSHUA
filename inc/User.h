@@ -22,3 +22,4 @@ void User_Begin(void);
 // Input: none
 // Output: none
 void User_FreeStyle(void);
+void User_JoshStyle(void);

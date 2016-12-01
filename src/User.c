@@ -56,15 +56,7 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
       SetMotor(left, leftMotor);
     }
     else if (leftValue == 127){
-       /* while (leftMotor >  0){
-            leftMotor = leftMotor - 0.001;
-            SetMotor(left, leftMotor);
-        }
-        while (leftMotor < 0){
-            leftMotor = leftMotor + 0.001;
-            SetMotor(left, leftMotor);
-        }*/
-        SetMotor(left, 0);
+              SetMotor(left, 0);
         
     }
    if (rightValue >= 127){
@@ -76,15 +68,7 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
       SetMotor(right, rightMotor);
     }
     else if (rightValue == 127){
-       /* while (rightMotor > 0){
-           rightMotor = rightMotor - 0.001;
-            SetMotor(right, rightMotor);
-        }
-        while (rightMotor < 0){
-            rightMotor = rightMotor + 0.001;
-            SetMotor(right, rightMotor);
-        }*/
-        SetMotor(right, 0);
+              SetMotor(right, 0);
     }
 }
 
@@ -110,9 +94,9 @@ void User_Begin(void){
 	while(1){
     //TestSampling_Check();
     PSX_Poll();
-   // if (Up == 255 && Left == 255 && Down && 255 && Right == 255){
-   //     PSX_Clear();
-   // }
+    if (Up == 255 && Left == 255 && Down && 255 && Right == 255){
+        PSX_Clear();
+    }
 		if(Down > 0){
 			Down = 0;											// acknowdledge down button
 			if(mode == FREESTYLE){
@@ -157,17 +141,8 @@ void User_Begin(void){
 				User_FreeStyle();
 			}
 			else if(mode == JOSHSTYLE){
-				// User_JoshStyle();							// go to corresponsing style if a selection is made
-              /*  SetMotor(left, -1);
-                SetMotor(right, 1);
-                Wait(5);
-                SetMotor(left, 1);
-                SetMotor(right, -1);
-                Wait(5);
-                SetMotor(left, 0);
-                SetMotor(right, 0);
-                mode = FREESTYLE;*/
-			}
+			    User_JoshStyle();							// go to corresponsing style if a selection is made
+      		}
 			
 			ST7735_FillScreen(0);              			
 			ST7735_SetCursor(0, 0);
@@ -192,14 +167,16 @@ void User_Begin(void){
 // Input: none
 // Output: none
 void User_FreeStyle(void){
-    //PSX_Initialize();
 	ST7735_FillScreen(0);              																// black screen
 	ST7735_SetCursor(0, 0);									
 	ST7735_OutString("Free Style:");
 	ST7735_SetCursor(0, 1);	
 	ST7735_OutString("Drive on!");																		// welcome to free style message
-	
-	ST7735_SetCursor(0, 3);
+    ST7735_SetCursor(0,4);
+    ST7735_OutString("Press Circle to");
+	ST7735_SetCursor(0,5);
+    ST7735_OutString("return to main menu.");
+/*	ST7735_SetCursor(0, 3);
 	ST7735_OutString("Left:    % of max");
 	ST7735_SetCursor(0, 5);
 	ST7735_OutString("Right:   % of max");														
@@ -210,7 +187,7 @@ void User_FreeStyle(void){
 		uint32_t rightP100 = 0;
 		uint32_t prevLeftP100 = 1;
 		uint32_t prevRightP100 = 1;
-
+*/
 	while(Circle == 0){
     
 	    // leftP100 = 0;
@@ -223,7 +200,7 @@ void User_FreeStyle(void){
 	//	leftP100 = (uint32_t) fabs(leftMotor) * 100.0;
 	//	rightP100 = (uint32_t) fabs(rightMotor) * 100.0;								// calculate percentage of max
 		
-		if(leftP100 != prevLeftP100){																		// update left percentage if it changed
+/*		if(leftP100 != prevLeftP100){																		// update left percentage if it changed
 			ST7735_SetCursor(SPEEDX, 3);
 			ST7735_OutUDec(leftP100);
 		}
@@ -234,7 +211,7 @@ void User_FreeStyle(void){
 		
 		prevLeftP100 = leftP100;
 		prevRightP100 = rightP100;							// update the previous values
-		
+*/		
 		// code to control motors from ADC
    // leftValue = ADCRead(leftPot);
    // rightValue = ADCRead(rightPot);
@@ -252,4 +229,13 @@ void User_FreeStyle(void){
 //		DownButton = 0;
 //		SelectButton = 0;
 //		BackButton = 0;																									// clear all buttons
+}
+
+void User_JoshStyle(void){
+   User_DriveMotors(255,0); 
+   Wait(3);
+   User_DriveMotors(0,255);
+   Wait(3);
+   User_DriveMotors(127,127);
+   PSX_Clear();
 }
