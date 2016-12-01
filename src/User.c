@@ -106,24 +106,24 @@ void User_Begin(void){
     			ST7735_SetCursor(0, JOSHSTYLE); 
     			ST7735_OutString("->");						// put the arrow at josh style
     		}
-    		else if(mode == JOSHSTYLE){
+    	/*	else if(mode == JOSHSTYLE){
     			mode = FREESTYLE;									
     			ST7735_SetCursor(0, JOSHSTYLE);
     			ST7735_OutString("  ");						// erase the arrow at josh style		
     			ST7735_SetCursor(0, FREESTYLE); 
     			ST7735_OutString("->");						// put the arrow at free style
-    		}
+    		}*/
     	}
 		if(Up > 0){
 			PSX_Clear();											// acknowdledge up button
-			if(mode == FREESTYLE){
+		/*	if(mode == FREESTYLE){
 				mode = JOSHSTYLE;
 				ST7735_SetCursor(0, FREESTYLE);
 				ST7735_OutString("  ");						// erase the arrow at free style				
 				ST7735_SetCursor(0, JOSHSTYLE); 
 				ST7735_OutString("->");						// put the arrow at josh style
 			}
-			else if(mode == JOSHSTYLE){
+	else*/ if(mode == JOSHSTYLE){
 				mode = FREESTYLE;									
 				ST7735_SetCursor(0, JOSHSTYLE);
 				ST7735_OutString("  ");						// erase the arrow at josh style
