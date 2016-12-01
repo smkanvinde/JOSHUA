@@ -129,10 +129,10 @@ void PSX_Poll(void) {
         R2 = data[20];
 }
 void PSX_Clear(void){
-    Lx = 0;
-    Ly = 0;
-    Rx = 0;
-    Ry = 0;
+    Lx = 128;
+    Ly = 127;
+    Rx = 128;
+    Ry = 127;
     X = 0;
     Square = 0;
     Triangle = 0;

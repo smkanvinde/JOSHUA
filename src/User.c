@@ -92,37 +92,34 @@ void User_Begin(void){
 	ST7735_OutString("->");									// set original location of selector at free styling
 	
 	while(1){
-    //TestSampling_Check();
-    PSX_Poll();
-    if (Up == 255 && Left == 255 && Down && 255 && Right == 255){
-        PSX_Clear();
-    }
-		if(Down > 0){
-			Down = 0;											// acknowdledge down button
-			if(mode == FREESTYLE){
-				mode = JOSHSTYLE;
-				ST7735_SetCursor(0, FREESTYLE);
-				ST7735_OutString("  ");						// erase the arrow at free style
-				
-				ST7735_SetCursor(0, JOSHSTYLE); 
-				ST7735_OutString("->");						// put the arrow at josh style
-			}
-			else if(mode == JOSHSTYLE){
-				mode = FREESTYLE;									
-				ST7735_SetCursor(0, JOSHSTYLE);
-				ST7735_OutString("  ");						// erase the arrow at josh style
-				
-				ST7735_SetCursor(0, FREESTYLE); 
-				ST7735_OutString("->");						// put the arrow at free style
-			}
-		}
+        //TestSampling_Check();
+        PSX_Poll();
+        if (Up == 255 && Left == 255 && Down && 255 && Right == 255){
+            PSX_Clear();
+        }
+    	if(Down > 0){
+    		PSX_Clear();											// acknowdledge down button
+    		if(mode == FREESTYLE){
+    			mode = JOSHSTYLE;
+    			ST7735_SetCursor(0, FREESTYLE);
+    			ST7735_OutString("  ");						// erase the arrow at free style			
+    			ST7735_SetCursor(0, JOSHSTYLE); 
+    			ST7735_OutString("->");						// put the arrow at josh style
+    		}
+    		else if(mode == JOSHSTYLE){
+    			mode = FREESTYLE;									
+    			ST7735_SetCursor(0, JOSHSTYLE);
+    			ST7735_OutString("  ");						// erase the arrow at josh style		
+    			ST7735_SetCursor(0, FREESTYLE); 
+    			ST7735_OutString("->");						// put the arrow at free style
+    		}
+    	}
 		if(Up > 0){
-			Up = 0;											// acknowdledge up button
+			PSX_Clear();											// acknowdledge up button
 			if(mode == FREESTYLE){
 				mode = JOSHSTYLE;
 				ST7735_SetCursor(0, FREESTYLE);
-				ST7735_OutString("  ");						// erase the arrow at free style
-				
+				ST7735_OutString("  ");						// erase the arrow at free style				
 				ST7735_SetCursor(0, JOSHSTYLE); 
 				ST7735_OutString("->");						// put the arrow at josh style
 			}
@@ -134,9 +131,9 @@ void User_Begin(void){
 				ST7735_SetCursor(0, FREESTYLE); 
 				ST7735_OutString("->");						// put the arrow at free style
 			}
-		}	
+        }	
 		if(X > 0){
-			X = 0;
+			PSX_Clear();
 			if(mode == FREESTYLE){
 				User_FreeStyle();
 			}
@@ -157,7 +154,7 @@ void User_Begin(void){
 			ST7735_OutString("->");									// restore screen after returning from selection
 		}
        PSX_Clear();                                                // clear all buttons
-    	}
+   	}
    
 }
 
@@ -172,7 +169,11 @@ void User_FreeStyle(void){
 	ST7735_OutString("Free Style:");
 	ST7735_SetCursor(0, 1);	
 	ST7735_OutString("Drive on!");																		// welcome to free style message
-    ST7735_SetCursor(0,4);
+    ST7735_SetCursor(0,2);
+    ST7735_OutString("Use the joysticks");
+    ST7735_SetCursor(0,3);
+    ST7735_OutString("to drive the motors.");
+    ST7735_SetCursor(0,6);
     ST7735_OutString("Press Circle to");
 	ST7735_SetCursor(0,5);
     ST7735_OutString("return to main menu.");
@@ -232,10 +233,22 @@ void User_FreeStyle(void){
 }
 
 void User_JoshStyle(void){
+   ST7735_FillScreen(0);
+   ST7735_SetCursor(0,0);
+   ST7735_OutString("Joshua's favorite");
+   ST7735_SetCursor(0,1);
+   ST7735_OutString("dance move is the");
+   ST7735_SetCursor(0,2);
+   ST7735_OutString("endless pirouette.");
+   ST7735_SetCursor(0,6);
+   ST7735_OutString("Press Circle to");
+   ST7735_SetCursor(0,7);
+   ST7735_OutString("return to main menu.");
+   PSX_Clear();
    User_DriveMotors(255,0); 
-   Wait(3);
-   User_DriveMotors(0,255);
-   Wait(3);
+   while (Circle == 0){
+       PSX_Poll();
+   }
    User_DriveMotors(127,127);
    PSX_Clear();
 }
