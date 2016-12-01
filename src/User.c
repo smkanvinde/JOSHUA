@@ -44,16 +44,10 @@ tMotor* right;
 float leftMotor;
 float rightMotor;
 
-///*extern*/ float LeftMotor, RightMotor;
 
 
 void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
-  // if (leftValue == 127){
-       // SetMotor(left, leftMotor/2);
-       // Wait(0.05);
-  //      SetMotor(left, 0);
-  //  }
-    if (leftValue > 127){
+   if (leftValue > 127){
       leftMotor = (float)(leftValue - 127) / 128;
       SetMotor(left, leftMotor);
     }
@@ -65,30 +59,14 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
         while (leftMotor >  0){
             leftMotor = leftMotor - 0.001;
             SetMotor(left, leftMotor);
-           // Wait(0.001);
         }
         while (leftMotor < 0){
             leftMotor = leftMotor + 0.001;
             SetMotor(left, leftMotor);
-           // Wait(0.001);
         }
         
     }
-  // else if (leftValue == 127 && rightValue == 127){
-  //     SetMotor(left, 0);
-  //     Wait(0.1);
-  //     SetMotor(right,0);
-  // }
-   // else {
-   //   SetMotor(left, 0);
-   // }
-    
-   // if (rightValue == 127){
-     // SetMotor(right, rightMotor/2);
-     // Wait(0.05);
-   //   SetMotor(right, 0);
-   // }
-    if (rightValue >= 127){
+   if (rightValue >= 127){
       rightMotor = (float)(rightValue - 127) / 128;
       SetMotor(right, rightMotor);
     }
@@ -100,23 +78,12 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
         while (rightMotor > 0){
            rightMotor = rightMotor - 0.001;
             SetMotor(right, rightMotor);
-           // Wait(0.001);
         }
         while (rightMotor < 0){
             rightMotor = rightMotor + 0.001;
             SetMotor(right, rightMotor);
-           // Wait(0.001);
         }
     }
-    // else if (leftValue == 127 && rightValue == 127){
-    //   SetMotor(left, 0);
-    //   Wait(0.1);
-    //   SetMotor(right,0);
-    // }
-
-   // else {
-    //  SetMotor(right, 0);
-   // }
 }
 
 // *****User_Begin*********
@@ -203,11 +170,7 @@ void User_Begin(void){
 			ST7735_SetCursor(0, mode);
 			ST7735_OutString("->");									// restore screen after returning from selection
 		}
-	//	UpButton = 0;
-	//	DownButton = 0;
-	//	SelectButton = 0;
-	//	BackButton = 0;
-        PSX_Clear();                                                // clear all buttons
+       PSX_Clear();                                                // clear all buttons
     	}
    
 }
@@ -218,6 +181,7 @@ void User_Begin(void){
 // Input: none
 // Output: none
 void User_FreeStyle(void){
+    //PSX_Initialize();
 	ST7735_FillScreen(0);              																// black screen
 	ST7735_SetCursor(0, 0);									
 	ST7735_OutString("Free Style:");
@@ -234,7 +198,8 @@ void User_FreeStyle(void){
 		uint32_t leftP100 = 0;
 		uint32_t rightP100 = 0;
 		uint32_t prevLeftP100 = 1;
-		uint32_t prevRightP100 = 1;	
+		uint32_t prevRightP100 = 1;
+
 	while(Circle == 0){
     
 	    // leftP100 = 0;
@@ -265,7 +230,8 @@ void User_FreeStyle(void){
       leftVal = Ly;
       rightVal =  Ry;
 
-      User_DriveMotors(leftVal, rightVal);
+     // User_DriveMotors(leftVal, rightVal);
+     User_DriveMotors(Ly, Ry);
 	}
     SetMotor(left, 0);
     SetMotor(right, 0);

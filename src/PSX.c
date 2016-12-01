@@ -100,9 +100,9 @@ void PSX_Initialize(void){
 }
 
 void PSX_Poll(void) {
-                int buff_size = send_packet_PS2(&poll[0],
-                                                arraySizeof(poll), &data[0]);
-                              if (buff_size == 21)
+         int buff_size = send_packet_PS2(&poll[0],
+                  arraySizeof(poll), &data[0]);
+         if (buff_size == 21)
                 Printf("Lx %03d Ly %03d Rx %03d Ry %03d "
                     "X %03d Square %03d Triangle %03d Circle %03d "
                     "Up %03d Down %03d Left %03d Right %03d "
@@ -111,22 +111,22 @@ void PSX_Poll(void) {
                     data[15], data[16], data[13], data[14],
                     data[11], data[12], data[10], data[9],
                     data[17], data[19], data[18], data[20]);
-               Lx = data[7];
-               Ly = data[8];
-               Rx = data[5];
-               Ry = data[6];
-               X = data[15];
-               Square = data[16];
-               Triangle = data[13];
-               Circle = data[14];
-               Up = data[11];
-               Down = data[12];
-               Left = data[10];
-               Right = data[9];
-               L1 = data[17];
-               L2 = data[19];
-               R1 = data[18];
-               R2 = data[20];
+        Lx = data[7];
+        Ly = data[8];
+        Rx = data[5];
+        Ry = data[6];
+        X = data[15];
+        Square = data[16];
+        Triangle = data[13];
+        Circle = data[14];
+        Up = data[11];
+        Down = data[12];
+        Left = data[10];
+        Right = data[9];
+        L1 = data[17];
+        L2 = data[19];
+        R1 = data[18];
+        R2 = data[20];
 }
 void PSX_Clear(void){
     Lx = 0;
