@@ -7,3 +7,4 @@ A simple robot which implements differential drive taking input from a wireless 
 Uses https://github.com/theotherjimmy/PSX-Demo-Firmware and https://github.com/ut-ras/Rasware.
 
 
+Note: As of today (January 31, 2017), all files in this repo are complete. 
