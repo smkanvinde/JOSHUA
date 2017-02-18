@@ -611,8 +611,8 @@ const unsigned short logo_160px[] = {
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
  0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
- 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
-};
+ 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF, 0xFFFF,
+};
 
 
 
@@ -735,7 +735,7 @@ void User_Begin(void){
 // Input: none
 // Output: none
 void User_FreeStyle(void){
-	/*ST7735_FillScreen(0);              																// black screen
+	ST7735_FillScreen(0);              																// black screen
 	ST7735_SetCursor(0, 0);									
 	ST7735_OutString("Free Style:");
 	ST7735_SetCursor(0, 1);	
@@ -744,8 +744,8 @@ void User_FreeStyle(void){
     ST7735_OutString("Use the joysticks");
     ST7735_SetCursor(0,3);
     ST7735_OutString("to drive the motors.");
-    ST7735_SetCursor(0,6);*/
-	ST7735_DrawBitmap(4, 159, logo_160px, 120, 160);
+    ST7735_SetCursor(0,6);
+//	ST7735_DrawBitmap(4, 159, logo_160px, 160,128);
    // ST7735_OutString("Press Circle to");
 	//ST7735_SetCursor(0,7);
    // ST7735_OutString("return to main menu.");
