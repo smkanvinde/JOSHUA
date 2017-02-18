@@ -174,9 +174,9 @@ void User_FreeStyle(void){
     ST7735_SetCursor(0,3);
     ST7735_OutString("to drive the motors.");
     ST7735_SetCursor(0,6);
-    ST7735_OutString("Press Circle to");
-	ST7735_SetCursor(0,7);
-    ST7735_OutString("return to main menu.");
+   // ST7735_OutString("Press Circle to");
+	//ST7735_SetCursor(0,7);
+   // ST7735_OutString("return to main menu.");
 /*	ST7735_SetCursor(0, 3);
 	ST7735_OutString("Left:    % of max");
 	ST7735_SetCursor(0, 5);
@@ -189,7 +189,7 @@ void User_FreeStyle(void){
 		uint32_t prevLeftP100 = 1;
 		uint32_t prevRightP100 = 1;
 */
-	while(Circle == 0){
+	while(true){
     
 	    // leftP100 = 0;
 		// rightP100 = 0;
