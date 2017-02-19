@@ -23,5 +23,3 @@ void User_Begin(void);
 // Output: none
 void User_FreeStyle(void);
 void User_JoshStyle(void);
-
-void User_StopMotors(void);

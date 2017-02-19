@@ -643,10 +643,6 @@ void User_DriveMotors(uint32_t leftValue, uint32_t rightValue){
     }
 }
 
-void User_StopMotors(void){
-    User_DriveMotors(127, 127);
-}
-
 // *****User_Begin*********
 // Initializes the user interface
 // Input: none
