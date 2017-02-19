@@ -11,16 +11,17 @@
 #include "ST7735.h"
 #include <math.h>
 #include "PSX.h"
-#include <StellarisWare/inc/hw_memmap.h>
+/*#include <StellarisWare/inc/hw_memmap.h>
 #include <StellarisWare/inc/hw_sysctl.h>
 #include <StellarisWare/driverlib/sysctl.h>
 #include <StellarisWare/inc/hw_watchdog.h>
-#include <StellarisWare/driverlib/watchdog.h>
-
+#include <StellarisWare/driverlib/watchdog.h>*/
+#include <RASLib/inc/timeout.h>
 
 
 tBoolean blink_on = true;
 tBoolean initialized = false;
+int tid;
 
 extern float leftValue;
 extern float rightValue;
@@ -36,7 +37,7 @@ void blink(void) {
     blink_on = !blink_on;
 }
 
-void WatchdogHandler(void) {
+/*void WatchdogHandler(void) {
     WatchdogIntClear(WATCHDOG_BASE);
     WatchdogResetDisable(WATCHDOG_BASE);
 
@@ -63,7 +64,7 @@ void WatchDog_Init(void) {
     WatchdogResetDisable(WATCHDOG_BASE);   //Second interrupt doesn't result processor
 
     WatchdogEnable(WATCHDOG_BASE);
-}
+}*/
 
 void initialize(void){
   if (!initialized){
@@ -85,8 +86,10 @@ int main(void) {
     InitializeGPIO();
 	CallEvery(blink, 0, 0.5);
     initialize();
-    WatchDog_Init();
+   // WatchDog_Init();
     //TestSampling_Init();
+   InitializeSystemTimeout();
+   int tid = CallOnTimeout(User_StopMotors, NULL, 0.1f);
     PSX_Initialize();
     ST7735_InitR(INITR_REDTAB);
     //User_Begin();
